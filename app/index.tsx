@@ -1,5 +1,5 @@
-import InterestSelection from './InterestSelection';
+import CreateAccount from "@/app/CreateAccount";
 
 export default function Index() {
-  return <InterestSelection />;
+  return <CreateAccount />;
 }

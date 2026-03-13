@@ -1,5 +1,5 @@
-import SearchIcon from '@/assets/images/search_icon_create_acc.svg';
-import React, { useState } from 'react';
+import SearchIcon from "@/assets/images/search_icon_create_acc.svg";
+import { useState } from "react";
 import {
   Keyboard,
   SafeAreaView,
@@ -8,133 +8,133 @@ import {
   TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  View
-} from 'react-native';
+  View,
+} from "react-native";
 
 const MAJORS = [
-  'Accounting',
-  'Acting',
-  'Actuarial Science',
-  'Advertising',
-  'Aerospace Engineering',
-  'African and African Diaspora Studies',
-  'All-Level Special Education',
-  'American Studies',
-  'Anthropology',
-  'Applied Movement Science',
-  'Architectural Engineering',
-  'Architectural Studies',
-  'Architecture',
-  'Architecture / Architectural Engineering Dual Degree Program',
-  'Art Education (UTeach Art)',
-  'Art History',
-  'Arts and Entertainment Technologies',
-  'Asian American Studies',
-  'Asian Cultures and Languages',
-  'Asian Studies',
-  'Astronomy',
-  'Athletic Training',
-  'Behavioral and Social Data Sciences',
-  'Biochemistry',
-  'Biology',
-  'Biomedical Engineering',
-  'Business Analytics',
-  'Chemical Engineering',
-  'Chemistry',
-  'Civics Honors',
-  'Civil Engineering',
-  'Classical Languages',
-  'Classical Studies',
-  'Climate System Science',
-  'Communication and Leadership',
-  'Communication Studies',
-  'Computational Engineering',
-  'Computer Science',
-  'Dance',
-  'Design',
-  'Early Childhood to 6th Grade Bilingual Generalist Certification',
-  'Early Childhood to 6th Grade ESL Generalist Certification',
-  'Economics',
-  'Electrical and Computer Engineering',
-  'English',
-  'Environmental Engineering',
-  'Environmental Science',
-  'European Studies',
-  'Exercise Science',
-  'Finance',
-  'French',
-  'Geography',
-  'Geological Sciences',
-  'Geosystems Engineering',
-  'German',
-  'Government',
-  'Health & Society',
-  'Health Promotion and Behavioral Science',
-  'History',
-  'Human Development and Family Sciences',
-  'Human Dimensions of Organizations',
-  'Human Ecology',
-  'Humanities',
-  'Informatics',
-  'Interior Design',
-  'International Business',
-  'International Relations and Global Studies',
-  'Italian',
-  'Jewish Studies',
-  'Journalism',
-  'Latin American Studies',
-  'Linguistics',
-  'Management',
-  'Management Information Systems',
-  'Marketing',
-  'Mathematics',
-  'Mechanical Engineering',
-  'Medical Laboratory Science',
-  'Mexican American & Latina/o Studies',
-  'Middle Eastern Studies',
-  'Music',
-  'Neuroscience',
-  'Nursing',
-  'Nutrition',
-  'Petroleum Engineering',
-  'Philosophy',
-  'Physical Culture and Sports',
-  'Physics',
-  'Psychology',
-  'Public Affairs',
-  'Public Health',
-  'Public Relations',
-  'Race, Indigeneity, and Migration',
-  'Radio-Television-Film',
-  'Religious Studies',
-  'Rhetoric and Writing',
-  'Russian, East European and Eurasian Studies',
-  'Social Work',
-  'Sociology',
-  'Spanish',
-  'Speech, Language, and Hearing Sciences',
-  'Sport Management',
-  'Statistics and Data Science',
-  'Studio Art',
-  'Supply Chain Management',
-  'Sustainability Studies',
-  'Textiles and Apparel',
-  'Theatre and Dance',
-  'Urban Studies',
-  'UTeach Dance (Dance Education)',
-  'UTeach Music (Music Studies)',
-  'UTeach Theatre (Theatre Studies)',
+  "Accounting",
+  "Acting",
+  "Actuarial Science",
+  "Advertising",
+  "Aerospace Engineering",
+  "African and African Diaspora Studies",
+  "All-Level Special Education",
+  "American Studies",
+  "Anthropology",
+  "Applied Movement Science",
+  "Architectural Engineering",
+  "Architectural Studies",
+  "Architecture",
+  "Architecture / Architectural Engineering Dual Degree Program",
+  "Art Education (UTeach Art)",
+  "Art History",
+  "Arts and Entertainment Technologies",
+  "Asian American Studies",
+  "Asian Cultures and Languages",
+  "Asian Studies",
+  "Astronomy",
+  "Athletic Training",
+  "Behavioral and Social Data Sciences",
+  "Biochemistry",
+  "Biology",
+  "Biomedical Engineering",
+  "Business Analytics",
+  "Chemical Engineering",
+  "Chemistry",
+  "Civics Honors",
+  "Civil Engineering",
+  "Classical Languages",
+  "Classical Studies",
+  "Climate System Science",
+  "Communication and Leadership",
+  "Communication Studies",
+  "Computational Engineering",
+  "Computer Science",
+  "Dance",
+  "Design",
+  "Early Childhood to 6th Grade Bilingual Generalist Certification",
+  "Early Childhood to 6th Grade ESL Generalist Certification",
+  "Economics",
+  "Electrical and Computer Engineering",
+  "English",
+  "Environmental Engineering",
+  "Environmental Science",
+  "European Studies",
+  "Exercise Science",
+  "Finance",
+  "French",
+  "Geography",
+  "Geological Sciences",
+  "Geosystems Engineering",
+  "German",
+  "Government",
+  "Health & Society",
+  "Health Promotion and Behavioral Science",
+  "History",
+  "Human Development and Family Sciences",
+  "Human Dimensions of Organizations",
+  "Human Ecology",
+  "Humanities",
+  "Informatics",
+  "Interior Design",
+  "International Business",
+  "International Relations and Global Studies",
+  "Italian",
+  "Jewish Studies",
+  "Journalism",
+  "Latin American Studies",
+  "Linguistics",
+  "Management",
+  "Management Information Systems",
+  "Marketing",
+  "Mathematics",
+  "Mechanical Engineering",
+  "Medical Laboratory Science",
+  "Mexican American & Latina/o Studies",
+  "Middle Eastern Studies",
+  "Music",
+  "Neuroscience",
+  "Nursing",
+  "Nutrition",
+  "Petroleum Engineering",
+  "Philosophy",
+  "Physical Culture and Sports",
+  "Physics",
+  "Psychology",
+  "Public Affairs",
+  "Public Health",
+  "Public Relations",
+  "Race, Indigeneity, and Migration",
+  "Radio-Television-Film",
+  "Religious Studies",
+  "Rhetoric and Writing",
+  "Russian, East European and Eurasian Studies",
+  "Social Work",
+  "Sociology",
+  "Spanish",
+  "Speech, Language, and Hearing Sciences",
+  "Sport Management",
+  "Statistics and Data Science",
+  "Studio Art",
+  "Supply Chain Management",
+  "Sustainability Studies",
+  "Textiles and Apparel",
+  "Theatre and Dance",
+  "Urban Studies",
+  "UTeach Dance (Dance Education)",
+  "UTeach Music (Music Studies)",
+  "UTeach Theatre (Theatre Studies)",
   "Women's and Gender Studies",
-  'Youth and Community Studies',
+  "Youth and Community Studies",
 ];
 
-const YEAR_OPTIONS = ['Freshmen', 'Sophomore', 'Junior', 'Senior', 'Graduate'];
+const YEAR_OPTIONS = ["Freshmen", "Sophomore", "Junior", "Senior", "Graduate"];
 
 const UNIQUE_CLASS_OPTIONS = [
-  'First Generation',
-  'International',
-  'Transfer',
-  'Non Applicable',
+  "First Generation",
+  "International",
+  "Transfer",
+  "Non Applicable",
 ];
 
 interface CreateAccountProps {
@@ -143,25 +143,25 @@ interface CreateAccountProps {
 }
 
 export default function CreateAccount({ onNext, onBack }: CreateAccountProps) {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedMajors, setSelectedMajors] = useState<string[]>([]);
   const [showMajorDropdown, setShowMajorDropdown] = useState(false);
 
   const [yearOpen, setYearOpen] = useState(false);
-  const [selectedYear, setSelectedYear] = useState('');
+  const [selectedYear, setSelectedYear] = useState("");
 
   const [uniqueOpen, setUniqueOpen] = useState(false);
-  const [selectedUnique, setSelectedUnique] = useState('');
+  const [selectedUnique, setSelectedUnique] = useState("");
 
   const filteredMajors = MAJORS.filter(
     (m) =>
       m.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      !selectedMajors.includes(m)
+      !selectedMajors.includes(m),
   );
 
   const handleSelectMajor = (major: string) => {
     setSelectedMajors((prev) => [...prev, major]);
-    setSearchQuery('');
+    setSearchQuery("");
     setShowMajorDropdown(false);
     Keyboard.dismiss();
   };
@@ -178,12 +178,14 @@ export default function CreateAccount({ onNext, onBack }: CreateAccountProps) {
   };
 
   const allFilled =
-    selectedMajors.length > 0 && selectedYear !== '' && selectedUnique !== '';
+    selectedMajors.length > 0 && selectedYear !== "" && selectedUnique !== "";
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <ScrollView className="flex-1 px-8 pt-6" keyboardShouldPersistTaps="handled">
-
+      <ScrollView
+        className="flex-1 px-8 pt-6"
+        keyboardShouldPersistTaps="handled"
+      >
         {/* Back Arrow */}
         <TouchableOpacity onPress={onBack} className="mb-8 self-start">
           <Text className="text-2xl text-gray-800">←</Text>
@@ -197,13 +199,19 @@ export default function CreateAccount({ onNext, onBack }: CreateAccountProps) {
         {/* Title - tap to close all dropdowns */}
         <TouchableWithoutFeedback onPress={closeAll}>
           <View>
-            <Text className="text-2xl font-bold text-gray-900 mb-2">Begin Your Journey</Text>
-            <Text className="text-sm text-gray-500 mb-10">Lets create your account!</Text>
+            <Text className="text-2xl font-bold text-gray-900 mb-2">
+              Begin Your Journey
+            </Text>
+            <Text className="text-sm text-gray-500 mb-10">
+              Lets create your account!
+            </Text>
           </View>
         </TouchableWithoutFeedback>
 
         {/* Major Search */}
-        <Text className="text-sm font-semibold text-gray-800 mb-3">Whats your major(s)?</Text>
+        <Text className="text-sm font-semibold text-gray-800 mb-3">
+          Whats your major(s)?
+        </Text>
         <View className="border border-gray-300 rounded-lg mb-3 px-4 flex-row items-center">
           <SearchIcon width={16} height={16} style={{ marginRight: 10 }} />
           <TextInput
@@ -225,11 +233,19 @@ export default function CreateAccount({ onNext, onBack }: CreateAccountProps) {
           />
         </View>
 
+        <div>
+          for i in MAJORS:
+          <input type="text" />
+        </div>
+
         {/* Selected Major Tags */}
         {selectedMajors.length > 0 && (
           <View className="flex-row flex-wrap gap-2 mb-4">
             {selectedMajors.map((major) => (
-              <View key={major} className="flex-row items-center bg-orange-700 rounded-full px-3 py-1.5">
+              <View
+                key={major}
+                className="flex-row items-center bg-orange-700 rounded-full px-3 py-1.5"
+              >
                 <Text className="text-white text-xs mr-1">{major}</Text>
                 <TouchableOpacity onPress={() => handleRemoveMajor(major)}>
                   <Text className="text-white text-xs font-bold">×</Text>
@@ -260,7 +276,9 @@ export default function CreateAccount({ onNext, onBack }: CreateAccountProps) {
         )}
 
         {/* Year Classification */}
-        <Text className="text-sm font-semibold text-gray-800 mb-3 mt-4">Year Classification</Text>
+        <Text className="text-sm font-semibold text-gray-800 mb-3 mt-4">
+          Year Classification
+        </Text>
         <TouchableOpacity
           className="border border-gray-300 rounded-lg px-4 py-4 flex-row justify-between items-center mb-3"
           onPress={() => {
@@ -269,10 +287,14 @@ export default function CreateAccount({ onNext, onBack }: CreateAccountProps) {
             setShowMajorDropdown(false);
           }}
         >
-          <Text className={selectedYear ? 'text-gray-800 text-sm' : 'text-gray-400 text-sm'}>
-            {selectedYear || 'Select year'}
+          <Text
+            className={
+              selectedYear ? "text-gray-800 text-sm" : "text-gray-400 text-sm"
+            }
+          >
+            {selectedYear || "Select year"}
           </Text>
-          <Text className="text-gray-400">{yearOpen ? '∧' : '∨'}</Text>
+          <Text className="text-gray-400">{yearOpen ? "∧" : "∨"}</Text>
         </TouchableOpacity>
         {yearOpen && (
           <View className="border border-gray-200 rounded-lg mb-8 bg-white shadow-sm overflow-hidden">
@@ -292,7 +314,9 @@ export default function CreateAccount({ onNext, onBack }: CreateAccountProps) {
         )}
 
         {/* Unique Classification */}
-        <Text className="text-sm font-semibold text-gray-800 mb-3 mt-4">Unique Classification</Text>
+        <Text className="text-sm font-semibold text-gray-800 mb-3 mt-4">
+          Unique Classification
+        </Text>
         <TouchableOpacity
           className="border border-gray-300 rounded-lg px-4 py-4 flex-row justify-between items-center mb-3"
           onPress={() => {
@@ -301,10 +325,14 @@ export default function CreateAccount({ onNext, onBack }: CreateAccountProps) {
             setShowMajorDropdown(false);
           }}
         >
-          <Text className={selectedUnique ? 'text-gray-800 text-sm' : 'text-gray-400 text-sm'}>
-            {selectedUnique || 'Select classification'}
+          <Text
+            className={
+              selectedUnique ? "text-gray-800 text-sm" : "text-gray-400 text-sm"
+            }
+          >
+            {selectedUnique || "Select classification"}
           </Text>
-          <Text className="text-gray-400">{uniqueOpen ? '∧' : '∨'}</Text>
+          <Text className="text-gray-400">{uniqueOpen ? "∧" : "∨"}</Text>
         </TouchableOpacity>
         {uniqueOpen && (
           <View className="border border-gray-200 rounded-lg mb-8 bg-white shadow-sm overflow-hidden">
@@ -326,16 +354,19 @@ export default function CreateAccount({ onNext, onBack }: CreateAccountProps) {
         {/* Next Button */}
         <TouchableOpacity
           className={`rounded-lg py-4 items-center justify-center mt-8 mb-16 ${
-            allFilled ? 'bg-orange-700' : 'bg-transparent border border-gray-300'
+            allFilled
+              ? "bg-orange-700"
+              : "bg-transparent border border-gray-300"
           }`}
           onPress={allFilled ? onNext : undefined}
           activeOpacity={allFilled ? 0.8 : 1}
         >
-          <Text className={`text-base font-semibold ${allFilled ? 'text-white' : 'text-gray-400'}`}>
+          <Text
+            className={`text-base font-semibold ${allFilled ? "text-white" : "text-gray-400"}`}
+          >
             Next
           </Text>
         </TouchableOpacity>
-
       </ScrollView>
     </SafeAreaView>
   );
